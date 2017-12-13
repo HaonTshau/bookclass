@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>业务登记清单</title>
+<!--css样式-->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-table.css" rel="stylesheet">
+<link href="css/bootstrap-editable.css" rel="stylesheet">
+<!--js-->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/bootstrap-table-zh-CN.js"></script>
+<script src="js/bootstrap-editable.js"></script>
+<script src="js/bootstrap-table-editable.js"></script>
+</head>
+<body>
+
+<table id="tradeList" data-classes="table table-hover">
+</table>
+
+
+</body>
+</html>
+<script>
+
+$(document).ready(function(){
+////////////////////////////////////////////
+
+$('#tradeList').bootstrapTable({
+	url: 'getywdjqd.php',		//后台文件
+	contentType: "application/x-www-form-urlencoded",   //前端发送到后台时采用编码类型
+	dataType: "json",     //预期返回的文件格式
+	striped: true,    //表格隔行变色
+	method: 'post',			//请求方式（*）
+	toolbar: '#toolbar',	//工具按钮用哪个容器
+	striped: true,	//是否显示行间隔色
+	cache: false,	//是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+	pagination: true,	//是否显示分页（*）
+	sortable: true,	//是否启用排序
+	sortOrder: "desc",	//排序方式
+	//queryParams:{"fang":"chao","qu":"ni"},//传递参数（*）
+	sidePagination: "client",	//分页方式：client客户端分页，server服务端分页（*）
+	pageNumber: 1,	//初始化加载第一页，默认第一页
+	pageSize: 25,	//每页的记录行数（*）
+	//pageList: [10, 25, 50, 100],
+	//可供选择的每页的行数（*）
+	search: true,	//是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+	strictSearch: false,//false 模糊搜索  true全匹配
+	showColumns: true,	//是否显示所有的列
+	showRefresh: true,	//是否显示刷新按钮
+	//minimumCountColumns: 2,	//最少允许的列数
+	clickToSelect: true,	//是否启用点击选中行
+	height: 900,	//行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+	uniqueId: "t_id",	//每一行的唯一标识，一般为主键列
+	showToggle: true,	//是否显示详细视图和列表视图的切换按钮
+	cardView: false,	//是否显示详细视图
+	detailView: false,	//是否显示父子表
+	sortName:"t_name",  //返回的数据该列排序,排序方式由sortOrder决定
+	//editable:true,//开启编辑模式 
+	//silentSort:false,
+	undefinedText:'',
+	
+	
+	onLoadSuccess: function (data) {
+		//$('#tableStyle').bootstrapTable('mergeCells', {index: 1, field: 'name', rowspan: 3});
+		console.log(data);
+		$('#tradeList tbody').append('<tr><td colspan="2">合计</td><td colspan="6">35</td></tr>').append('<tr><td colspan="2">客户确认</td><td colspan="6">近平</td></tr>');
+	},
+	onEditableSave: function(field, row, oldValue, $el) {
+	//console.log(row);return false;
+	//Fired when an editable cell is saved.
+		$('#tradeList').bootstrapTable("resetView");
+		//console.log(row);return false;
+ 		$.ajax({
+			type: "post",
+			url: "updatetable.php",
+			data: row,
+			dataType: 'text',
+			success: function (data, status) {
+				//console.log(data);
+				alert(data);
+				$('#tradeList').bootstrapTable('refresh',{silent: true});
+			}//success
+			,error: function () {
+				alert('编辑失败');
+				$('#tradeList').bootstrapTable('refresh',{silent: true});
+			}
+			,complete: function (XMLHttpRequest, textStatus){
+				//console.log(textStatus);
+				//if(textStatus == 'success' )
+			}
+		});
+	},//onEditableSave
+	onEditableShown:function(field, row, $el, editable){
+	//Fired when an editable cell is opened for edits.
+		return false;
+	},//onEditableShown
+	onEditableHidden: function(field, row, $el, reason) {
+	//Fired when an editable cell is hidden / closed.
+		return false;
+    },//onEditableHidden
+	onEditableInit: function() {
+	//Fired when all columns was initialized by $().editable() method.
+		return false;
+    },//onEditableInit
+ 	columns:[
+		//{
+		 //  checkbox: false
+		//},
+		{
+			field: 'checkintm',
+			title: '日期',
+			//rows: 10,
+			sortable:false
+		},
+		{
+			field: 'content',
+			title: '内容摘要',
+			sortable:false
+		},
+		{
+			field: 'spec',
+			title: '规格',
+			sortable:false
+		},
+		{
+			field: 'count',
+			title: '数量',
+			sortable:false
+		},
+		{
+			field: 'unit',
+			title: '单位',
+			sortable:false
+		},
+		{
+			field: 'price',
+			title: '单价',
+			sortable:false
+		},
+		{
+			field: 'total',
+			title: '金额',
+			sortable:false
+		},
+		{
+			field: 'mark',
+			title: '备注',
+			sortable:false
+		}
+	] 
+	
+	
+	
+	
+}
+
+
+
+
+);
+
+
+});
+
+
+
+$(document).ready(function(){
+$div = $('div.bs-bars');
+//insertButton 新增按钮
+$insertButton = $("<button class='btn btn-primary'><span class='glyphicon'></span>打印</button>");
+$insertButton.appendTo($div);
+/////////////////////////
+$insertButton.click(function(){
+var printdata = $("#tradeList").html();    //要打印的表格
+var oldstr = document.body.innerHTML;   //页面上所有数据
+var headstr = "<html><body><table>";
+document.body.innerHTML = headstr+printdata+"</table></body></html>";
+window.print();
+document.body.innerHTML = oldstr;
+return false;
+});
+
+////////////////////////
+
+});
+
+
+
+</script>
+
