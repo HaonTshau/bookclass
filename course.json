@@ -1,0 +1,44 @@
+
+[
+    {
+		"time":"9:00",
+        "mon":"Boot Camp(2)",
+		"tue":"Boot Camp(2)",
+        "wed": "Boot Camp(2)",
+		"thu":" ",
+		"fri":" "
+    },
+    {
+	"time":"10:00",
+        "mon":" ",
+		"tue":" ",
+        "wed": " ",
+		"thu":"Boxercise(4)",
+		"fri":"Boxercise(4)"
+    },
+    {
+	"time":"11:00",
+        "mon":"Pilates(3)",
+		"tue":" ",
+        "wed": "Pilates(3)",
+		"thu":" ",
+		"fri":" "
+    },
+    {
+	"time":"13:00",
+        "mon":" ",
+		"tue":"Yoga(2)",
+        "wed": "Yoga(2)",
+		"thu":" ",
+		"fri":" "
+    },
+    {
+	"time":"14:00",
+        "mon":" ",
+		"tue":" ",
+        "wed": " ",
+		"thu":" ",
+		"fri":"Zumba(2)"
+    }
+	
+]
