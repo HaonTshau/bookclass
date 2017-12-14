@@ -6,13 +6,6 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-table.css" rel="stylesheet">
 <link href="css/bootstrap-editable.css" rel="stylesheet">
-<!--js-->
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-table.js"></script>
-<script src="js/bootstrap-table-zh-CN.js"></script>
-<script src="js/bootstrap-editable.js"></script>
-<script src="js/bootstrap-table-editable.js"></script>
 <style>
 .table-bordered th,  
   .table-bordered td {  
