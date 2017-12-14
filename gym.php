@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<!--css样式-->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-table.css" rel="stylesheet">
 <link href="css/bootstrap-editable.css" rel="stylesheet">
@@ -43,10 +42,16 @@ margin:0 auto;
 		<br />
 		<label for="time_">Times</label>
 		<select id="time_" style="width:300px;">
-		<option>Monday, 9:00; Tuesday, 9:00; Wednesday, 9:00</option>
-		<option>Thursday, 10:00; Friday, 10:00</option>
-		<option>Monday, 11:00; Wednesday, 11:00; Friday, 11:00</option>
-		<option>Tuesday, 13:00; Wednesday, 13:00</option>
+		<option>Monday, 9:00</option>
+		<option>Tuesday, 9:00</option>
+		<option>Wednesday, 9:00</option>
+		<option>Thursday, 10:00</option>
+		<option>Friday, 10:00</option>
+		<option>Monday, 11:00</option>
+		<option>Wednesday, 11:00</option>
+		<option>Friday, 11:00</option>
+		<option>Tuesday, 13:00</option>
+		<option>Wednesday, 13:00</option>
 		<option>Friday, 14:00</option>
 			</select><br />
     <label for="yourname">Your name</label>
