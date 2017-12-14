@@ -29,10 +29,10 @@ margin:0 auto;
 </head>
 <body>
 
-<table id="tradeList" data-classes="table table-hover table-bordered">
 
-</table>
+<div class="bootstrap-table"><div class="fixed-table-toolbar"><div class="bs-bars pull-left"></div></div><div class="fixed-table-container" style="padding-bottom: 0px;"><div class="fixed-table-header" style="display: none;"><table></table></div><div class="fixed-table-body"><div class="fixed-table-loading" style="top: 83px; display: none;">正在努力地加载数据中，请稍候……</div><table id="tradeList" data-classes="table table-hover table-bordered" class="table table-hover table-bordered table-striped">
 
+<thead><tr><th style="text-align: center; " colspan="6" tabindex="0"><div class="th-inner ">timetables</div><div class="fht-cell"></div></th></tr><tr><th style="" data-field="time" tabindex="0"><div class="th-inner "> </div><div class="fht-cell"></div></th><th style="text-align: center; " data-field="mon" tabindex="0"><div class="th-inner ">Monday</div><div class="fht-cell"></div></th><th style="text-align: center; " data-field="tue" tabindex="0"><div class="th-inner ">Tuesday</div><div class="fht-cell"></div></th><th style="text-align: center; " data-field="wed" tabindex="0"><div class="th-inner ">Wednesday</div><div class="fht-cell"></div></th><th style="text-align: center; " data-field="thu" tabindex="0"><div class="th-inner ">Thursday</div><div class="fht-cell"></div></th><th style="text-align: center; " data-field="fri" tabindex="0"><div class="th-inner ">Friday</div><div class="fht-cell"></div></th></tr></thead><tbody><tr data-index="0"><td style="">9:00</td><td style="text-align: center; ">Boot Camp(2)</td><td style="text-align: center; ">Boot Camp(2)</td><td style="text-align: center; ">Boot Camp(2)</td><td style="text-align: center; "> </td><td style="text-align: center; "> </td></tr><tr data-index="1"><td style="">10:00</td><td style="text-align: center; "> </td><td style="text-align: center; "> </td><td style="text-align: center; "> </td><td style="text-align: center; ">Boxercise(4)</td><td style="text-align: center; ">Boxercise(4)</td></tr><tr data-index="2"><td style="">11:00</td><td style="text-align: center; ">Pilates(3)</td><td style="text-align: center; "> </td><td style="text-align: center; ">Pilates(3)</td><td style="text-align: center; "> </td><td style="text-align: center; "> </td></tr><tr data-index="3"><td style="">13:00</td><td style="text-align: center; "> </td><td style="text-align: center; ">Yoga(2)</td><td style="text-align: center; ">Yoga(2)</td><td style="text-align: center; "> </td><td style="text-align: center; "> </td></tr><tr data-index="4"><td style="">14:00</td><td style="text-align: center; "> </td><td style="text-align: center; "> </td><td style="text-align: center; "> </td><td style="text-align: center; "> </td><td style="text-align: center; ">Zumba(2)</td></tr></tbody></table></div><div class="fixed-table-footer" style="display: none;"><table><tbody><tr></tr></tbody></table></div><div class="fixed-table-pagination" style="display: none;"></div></div></div>
 <div id="container">
 <form>
 
@@ -71,132 +71,3 @@ margin:0 auto;
 
 </body>
 </html>
-<script>
-
-$('#tradeList').bootstrapTable({
-	url: 'course.json',		//后台文件
-	contentType: "application/x-www-form-urlencoded",   //前端发送到后台时采用编码类型
-	dataType: "json",     //预期返回的文件格式
-	striped: true,    //表格隔行变色
-	method: 'post',			//请求方式（*）
-	toolbar: '#toolbar',	//工具按钮用哪个容器
-	striped: true,	//是否显示行间隔色
-	cache: false,	//是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-	pagination: false,	//是否显示分页（*）
-	sortable: true,	//是否启用排序
-	sortOrder: "desc",	//排序方式
-	//queryParams:{"fang":"chao","qu":"ni"},//传递参数（*）
-	sidePagination: "client",	//分页方式：client客户端分页，server服务端分页（*）
-	pageNumber: 1,	//初始化加载第一页，默认第一页
-	//pageSize: 25,	//每页的记录行数（*）
-	//pageList: [10, 25, 50, 100],
-	//可供选择的每页的行数（*）
-	search: false,	//是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-	strictSearch: false,//false 模糊搜索  true全匹配
-	showColumns: false,	//是否显示所有的列
-	showRefresh: false,	//是否显示刷新按钮
-	//minimumCountColumns: 2,	//最少允许的列数
-	clickToSelect: true,	//是否启用点击选中行
-	//height: 900,	//行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-	uniqueId: "t_id",	//每一行的唯一标识，一般为主键列
-	showToggle: false,	//是否显示详细视图和列表视图的切换按钮
-	cardView: false,	//是否显示详细视图
-	detailView: false,	//是否显示父子表
-	undefinedText:'',
-	//sortName:"t_name",  //返回的数据该列排序,排序方式由sortOrder决定
-	//editable:true,//开启编辑模式 
-	//silentSort:false,
-	onEditableSave: function(field, row, oldValue, $el) {
-	//console.log(row);return false;
-	//Fired when an editable cell is saved.
-		$('#tradeList').bootstrapTable("resetView");
-		//console.log(row);return false;
- 		$.ajax({
-			type: "post",
-			url: "",
-			data: row,
-			dataType: 'text',
-			success: function (data, status) {
-				//console.log(data);
-				alert(data);
-				$('#tradeList').bootstrapTable('refresh',{silent: true});
-			}//success
-			,error: function () {
-				alert('编辑失败');
-				$('#tradeList').bootstrapTable('refresh',{silent: true});
-			}
-			,complete: function (XMLHttpRequest, textStatus){
-				//console.log(textStatus);
-				//if(textStatus == 'success' )
-			}
-		});
-	},//onEditableSave
-	onEditableShown:function(field, row, $el, editable){
-	//Fired when an editable cell is opened for edits.
-		return false;
-	},//onEditableShown
-	onEditableHidden: function(field, row, $el, reason) {
-	//Fired when an editable cell is hidden / closed.
-		return false;
-    },//onEditableHidden
-	onEditableInit: function() {
-	//Fired when all columns was initialized by $().editable() method.
-		return false;
-    },//onEditableInit
- 	columns:[
-	[
-	{
-		"title":'timetables',
-		"colspan":6,
-		"align":'center'
-	}
-	],
-	[
-	{
-			field: 'time',
-			title: ' ',
-			//sortable:true       //排序
-			//align:"center"
-		
-	},
-
-	
-		{
-			field: 'mon',
-			title: 'Monday',
-			align:'center'
-		},
-		{
-			field: 'tue',
-			title: 'Tuesday',
-			//class: 'pf',
-			sortable:false,
-			align:'center'
-		},
-		{
-			field: 'wed',
-			title: 'Wednesday',
-			//class: 'pf',
-			sortable:false,
-			align:'center'
-		},
-		{
-			field: 'thu',
-			title: 'Thursday',
-			//class: 'pf',
-			sortable:false,
-			align:'center'
-		},
-		{
-			field: 'fri',
-			title: 'Friday',
-			//class: 'pf',
-			sortable:false,
-			align:'center'
-		}
-		]
-		]
-	
-});
-
-</script>
