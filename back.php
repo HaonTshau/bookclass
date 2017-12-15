@@ -1,9 +1,11 @@
 <?php
 
 function onError($arg){
+	 ob_start();
 	echo "</br> Back to gym.php in 3 seconds ... ";
 	$url = "gym.php" . $arg;
 	header("refresh: 3; url=$url");
+	ob_end_flush();
 	exit;
 }
 
@@ -28,13 +30,17 @@ $username = trim($username);
 $phone = trim($phone);
 
 if ('' == $course){
+	ob_start();
 	echo '<font color="red">Book Failed: class not selected</font>';
 	onError('?course=' . $course . '&username=' .  $username . '&time=' . $time .'&userphone=' . $phone);
+	ob_end_flush();
 }
 
 if ('' == $time){
+	ob_start();
 	echo '<font color="red">Book Failed: time not selected</font>';
 	onError('?course=' . $course . '&username=' .  $username . '&time=' . $time .'&userphone=' . $phone);
+	ob_end_flush();
 }
 
 if ('' != $username){
@@ -43,13 +49,17 @@ if ('' != $username){
 	if (preg_match($regex, $username, $matches)){
 		//var_dump($matches);
 	}else{
+		ob_start();
 		echo '<font color="red">Book Failed: username not valid</font>';
 		onError('?course=' . $course . '&username=' .  $username . '&time=' . $time .'&userphone=' . $phone);
+		ob_end_flush();
 	}
 }else{
+	ob_start();
 	echo '<font color="red">PLEASE input username</font>';
 	//onError('');
 	onError('?course=' . $course . '&username=' .  $username . '&time=' . $time .'&userphone=' . $phone);
+	ob_end_flush();
 }
 
 if ('' != $phone){
@@ -58,14 +68,18 @@ if ('' != $phone){
 	if (preg_match($regex, $phone, $matches)){
 		//var_dump($matches);
 	}else{
+		ob_start();
 		echo '<font color="red">Book Failed: phone/mobile not valid</font>';
 		//onError('');
 		onError('?course=' . $course . '&username=' .  $username . '&time=' . $time .'&userphone=' . $phone);
+		ob_end_flush();
 	}
 }else{
+	ob_start();
 	echo '<font color="red">PLEASE input phone/mobile number</font>';
 	//onError('');
 	onError('?course=' . $course . '&username=' .  $username . '&time=' . $time .'&userphone=' . $phone);
+	ob_end_flush();
 }
 
 // check class has at least one place left

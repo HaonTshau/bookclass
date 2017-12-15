@@ -32,6 +32,7 @@ try{
 $dbh = new PDO('mysql:host=localhost;dbname=bookclass', MYSQLUSER, MYSQLPASS);
  $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
  $dbh->exec("SET CHARACTER SET utf8");
+ $dbh->exec("SET GLOBAL sql_mode = ''");
  }catch(PDOException$e){
  print"Error!:".$e->getMessage()."<br/>";
  die();
