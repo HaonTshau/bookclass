@@ -68,8 +68,8 @@ if(empty($coursename)){  // no course has been selected
 		$globalflag = true;   //true : none class left
 	}
 }
-else {     //class is selected  or   ?course=classname   选了第1个列表之后回传执行，或从后台返回来执行
-	if(empty($coursetime)){     //someone is selected   //选了第1个列表之后回传执行
+else {     //class is selected  or   ?course=classname   
+	if(empty($coursetime)){     //someone is selected   
 		$sql = "select id,coursename from `course` where `remain` > 0 group by coursename order by `coursename` asc";
 		$sth = $dbh->query($sql);
 		if($sth->rowCount()){    //class that has places
@@ -110,7 +110,7 @@ else {     //class is selected  or   ?course=classname   选了第1个列表之�
 		//echo json_encode($cousetimelistarray);
 		//exit;
 	}
-	else{        //?course=classname    从后台返回来执行
+	else{        //?course=classname    
 
 	
 	////////////////////
