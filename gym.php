@@ -4,7 +4,16 @@
 <meta charset="utf-8" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-table.css" rel="stylesheet">
-<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+function _submit(){
+		var coursename = document.gym.course.value;
+		var username = document.gym.username.value;
+		var userphone = document.gym.userphone.value;
+		var url = 'gym.php?course='+coursename+'&username='+username+'&userphone='+userphone;
+		location.replace(url);
+}
+
+</script>
 <style>
 .table-bordered th,  
   .table-bordered td {  
@@ -162,7 +171,7 @@ if($globalflag)
 <fieldset>
     <legend>book class</legend>
 	<label for="course" class="dispear">Class</label>
-		<select id="course" name="course" style="width:300px;">
+		<select id="course" name="course" style="width:300px;" onchange="_submit()">
 		<?php if(!empty($coursenameList)) echo $coursenameList?>
 		</select>
 		<br />
@@ -192,19 +201,4 @@ if($globalflag)
 
 </body>
 </html>
-<script>
 
-$(document).ready(function(){
-	//
-	$('#course').on('change',function(e){
-		var coursename = $('#course').val();
-		var username = $('#username').val();
-		var userphone = $('#userphone').val();
-		var url = 'gym.php?course='+coursename+'&username='+username+'&userphone='+userphone;
-		//var oldurl = location.href;
-		location.replace(url);
-		  //location.href = index.php;
-		  
-	});
-});
-</script>
