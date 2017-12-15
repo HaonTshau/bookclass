@@ -155,7 +155,7 @@ if($globalflag)
 
 
 <div id="container">
-<form name="gym" action="back.php">
+<form name="gym" action="back.php" method="post">
 
 
 <fieldset>
@@ -199,7 +199,7 @@ $(document).ready(function(){
 		var coursename = $('#course').val();
 		var username = $('#username').val();
 		var userphone = $('#userphone').val();
-		var url = 'index.php?course='+coursename+'&username='+username+'&userphone='+userphone;
+		var url = 'gym.php?course='+coursename+'&username='+username+'&userphone='+userphone;
 		//var oldurl = location.href;
 		location.replace(url);
 		  //location.href = index.php;
